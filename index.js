@@ -1,4 +1,3 @@
-// ==============
 // ACTION CREATOR
 // ==============
 // People dropping off a form
@@ -76,3 +75,23 @@ const policies = (listOfPolicies = [], action) => {
     }
     return listOfPolicies;
 }
+
+import { createStore, combineReducers } from 'redux';
+
+// Combines all of our reducers
+const ourDepartments = combineReducers({
+    accounting: accounting,
+    claimHistory: claimHistory,
+    policies: policies
+})
+
+const store = createStore(ourDepartments);
+
+const action = createPolicy('Alex', 20);
+console.log(action);
+
+// When we called store,dispatch each one of our reducer function were run and essentially processed or evaluated the type of form it was
+store.dispatch(action);
+
+// This is the overall state of our application
+store.getState();
